@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Actors/gradient_linear.png" type="Texture" id=1]
+
+[sub_resource type="PhysicsMaterial" id=2]
+bounce = 0.49
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 29.0
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR = vec4(texture(TEXTURE, UV).a, 0., 0., texture(TEXTURE, UV).a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[node name="GooParticle" type="RigidBody2D"]
+position = Vector2( 38, 38 )
+collision_layer = 16
+collision_mask = 9
+mass = 0.32
+physics_material_override = SubResource( 2 )
+gravity_scale = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.625, -1.125 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( -1.64123, -3.54449 )
+scale = Vector2( 1.41282, 1.37089 )
+texture = ExtResource( 1 )

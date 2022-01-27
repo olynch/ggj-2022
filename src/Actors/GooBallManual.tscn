@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Actors/GooParticle.tscn" type="PackedScene" id=1]
+
+[node name="GooBall" type="Node2D"]
+
+[node name="RigidBody2D1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 91, 93 )
+
+[node name="RigidBody2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 49, 148 )
+
+[node name="RigidBody2D3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 127, 159 )
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2( 92, 94 )
+rotation = 0.682912
+node_a = NodePath("../RigidBody2D1")
+node_b = NodePath("../RigidBody2D2")
+length = 75.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+position = Vector2( 47, 149 )
+rotation = -1.42366
+node_a = NodePath("../RigidBody2D2")
+node_b = NodePath("../RigidBody2D3")
+length = 75.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D3" type="DampedSpringJoint2D" parent="."]
+position = Vector2( 93, 96 )
+rotation = -0.500396
+node_a = NodePath("../RigidBody2D1")
+node_b = NodePath("../RigidBody2D3")
+length = 75.0
+damping = 0.5
